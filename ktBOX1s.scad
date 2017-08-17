@@ -36,7 +36,7 @@ lcd_gap = 3.3;
 A = 1;
 B = 0;//1;
 C = 0;//1;
-D = 0;//1;
+
 
 
 if( A ){
@@ -67,6 +67,7 @@ difference(){
             rotate( [90, 0, 0] )
             cylinder( 1, 2, 2, center=true, $fn=30 );
             
+            //LED
             translate( [63.5, 0, 0] ){
                 translate( [-7-1, front_y-15-37.5-1, panel_thick] )
                 cube( [6, 4, 12.5] );
@@ -95,11 +96,11 @@ difference(){
     
     translate( [63.5, 0, 0] ){
         //USB
-        translate( [-1, front_y-panel_thick/2+gap1, 13.5] )
+        translate( [1.25, front_y-panel_thick/2+gap1, 13.5] )
         cube( [7.5, panel_thick+gap2*2, 5], center=true );
         
         //SW
-        translate( [20, front_y-10.5, panel_thick/2] ){
+        /*translate( [20, front_y-10.5, panel_thick/2] ){
             cube( [10+0.6, 6, panel_thick+gap2*2], center=true );
             translate( [0, 6/2, 0] )
             rotate( [-45, 0, 0] )
@@ -107,7 +108,9 @@ difference(){
             translate( [0, -6/2, 0] )
             rotate( [45, 0, 0] )
             cube( [10+0.6, 6, panel_thick+gap2*2], center=true );
-        }
+        }*/
+        
+        //LED
         translate( [-7, front_y-15-37.5, 0.5] )
         cube( [4, 2, 15] );
     }
@@ -121,18 +124,22 @@ difference(){
     cube( [8.5, 3, 7], center=true );
     
     //del
-    /*translate( [-20, -10, 0] )
-    cube( [20, 100, 40] );
-    translate( [0, 12, 0] )
-    cube( [14, 55, 40] );
-    translate( [55, 12, 0] )
-    cube( [50, 55, 40] );
-    translate( [front_x, -10, 0] )
-    cube( [20, 100, 40] );
+    //translate( [-20, -10, -gap1] )
+    //cube( [20, 100, 40] );
+    translate( [4, 12, -gap1] )
+    cube( [10, 55, 40] );
+    translate( [55, 12, -gap1] )
+    cube( [45, 10, 10] );
+    translate( [55, 29, -gap1] )
+    cube( [45, 42, 10] );
+    translate( [63, 19, -gap1] )
+    cube( [37, 13, 10] );
+    //translate( [front_x, -10, -gap1] )
+    //cube( [20, 100, 40] );
     translate( [15, front_y-5, 10] )
     cube( [40, 10, 40] );
-    translate( [15, -5, 0] )
-    cube( [75, 10, 40] );*/
+    translate( [15, -5, -gap1] )
+    cube( [75, 10, 40] );
 }
 }
 
@@ -167,13 +174,6 @@ translate( [0, 100, 0] ){
 }
 }
 
-if( D ){
-//translate( [front_x, 22.65, panel_thick] )
-//rotate( [-90, 0, 180] )
-translate( [0, -30, 20] )
-rotate( [90, 0, 0] )
-button( 0, 0, 0 );
-}
 
 
 
@@ -204,18 +204,18 @@ module board_base( x, y, z=0 ){
             translate( [front_x-panel_thick-10, front_y-panel_thick-base_y, panel_thick] )
             cube( [base_x, base_y, front_z-board_thick] );
             }
-            translate( [panel_thick-5, panel_thick-gap1, panel_thick+3] )
+            translate( [panel_thick-8, panel_thick-gap1, panel_thick+4.5] )
             rotate( [0, 45, 0] )
-            cube( [base_x+3.5, base_y+gap2, front_z-board_thick] );
-            translate( [panel_thick-5, front_y-panel_thick-base_y-gap1, panel_thick+3] )
+            cube( [base_x+6.5, base_y+gap2, front_z-board_thick] );
+            translate( [panel_thick-8, front_y-panel_thick-base_y-gap1, panel_thick+4.5] )
             rotate( [0, 45, 0] )
-            cube( [base_x+3.5, base_y+gap2, front_z-board_thick] );
+            cube( [base_x+6.5, base_y+gap2, front_z-board_thick] );
             translate( [front_x-panel_thick-10+5, panel_thick-gap1, panel_thick-5.7] )
             rotate( [0, -45, 0] )
-            cube( [base_x+3.5, base_y+gap2, front_z-board_thick] );
+            cube( [base_x+6.5, base_y+gap2, front_z-board_thick] );
             translate( [front_x-panel_thick-10+5, front_y-panel_thick-base_y-gap1, panel_thick-5.7] )
             rotate( [0, -45, 0] )
-            cube( [base_x+3.5, base_y+gap2, front_z-board_thick] );        }
+            cube( [base_x+6.5, base_y+gap2, front_z-board_thick] );        }
     }
 }
 module board_hole( x, y, z=0 ){
