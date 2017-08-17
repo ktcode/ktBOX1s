@@ -134,8 +134,8 @@ difference(){
     cube( [37, 13, 10] );
     translate( [15, front_y-5, 10] )
     cube( [40, 10, 40] );
-    translate( [15, -5, -gap1] )
-    cube( [75, 10, 40] );
+    translate( [14, -5, -gap1] )
+    cube( [76, 10, 40] );
     //translate( [-20, -10, -gap1] )
     //cube( [20, 100, 40] );
     //translate( [front_x, -10, -gap1] )
