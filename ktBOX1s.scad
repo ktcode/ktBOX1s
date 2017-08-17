@@ -124,22 +124,22 @@ difference(){
     cube( [8.5, 3, 7], center=true );
     
     //del
-    //translate( [-20, -10, -gap1] )
-    //cube( [20, 100, 40] );
     translate( [4, 12, -gap1] )
-    cube( [10, 55, 40] );
+    cube( [10, 59, 10] );
     translate( [55, 12, -gap1] )
     cube( [45, 10, 10] );
     translate( [55, 29, -gap1] )
     cube( [45, 42, 10] );
     translate( [63, 19, -gap1] )
     cube( [37, 13, 10] );
-    //translate( [front_x, -10, -gap1] )
-    //cube( [20, 100, 40] );
     translate( [15, front_y-5, 10] )
     cube( [40, 10, 40] );
     translate( [15, -5, -gap1] )
     cube( [75, 10, 40] );
+    //translate( [-20, -10, -gap1] )
+    //cube( [20, 100, 40] );
+    //translate( [front_x, -10, -gap1] )
+    //cube( [20, 100, 40] );
 }
 }
 
