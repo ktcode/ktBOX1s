@@ -15,10 +15,10 @@ rear_x = front_x;
 rear_y = front_y;
 rear_z = 13+panel_thick;
 
-hinge_x = 10;
+hinge_x = 6.5;
 hinge_y = front_y/3-0.3;
 hinge_hole = 1.1+0.4;
-hook_x = 10;
+hook_x = 6.5;
 hook_y = front_y/3-0.3;
 hook_z = 2.5;
 
@@ -53,17 +53,19 @@ difference(){
             
             lcd_base( 20.5, 30.6, panel_thick );
             
-            hook( -10, 0, 0, front_z );
-            hook( -10, front_y-hook_y, 0, front_z );
+            hook( -hinge_x, 0, 0, front_z );
+            hook( -hinge_x, front_y-hook_y, 0, front_z );
             hinge( front_x, 0, 0, front_z );
             hinge( front_x, front_y-hinge_y, 0, front_z );
             translate( [front_x, hinge_y, 0] )
-            cube( [10, front_y-hinge_y*2, 10] );
-            translate( [-10, hinge_y, 0] )
-            cube( [10, front_y-hinge_y*2, 10] );
+            
+            //hinge
+            cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
+            translate( [-hinge_x, hinge_y, 0] )
+            cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
             
             //stopper
-            translate( [front_x+10/2+0.25, 20, front_z+panel_thick] )
+            translate( [front_x+hinge_x/2+0.25, 20, front_z+panel_thick] )
             rotate( [90, 0, 0] )
             cylinder( 1, 2, 2, center=true, $fn=30 );
             
@@ -82,15 +84,16 @@ difference(){
     lcd_window( 20.5, 30.6 );
     lcd_hole( 20.5, 30.6, panel_thick );
 
-    translate( [front_x+10, hinge_y-gap1, -10] )
+    //hinge
+    translate( [front_x+hinge_x, hinge_y-gap1, -hinge_x] )
     rotate( [0, -45, 0] )
-    cube( [10*sqrt(2), front_y-hinge_y*2+gap2, 10*sqrt(2)] );
-    translate( [-10, hinge_y-gap1, -10] )
+    cube( [hinge_x*sqrt(2), front_y-hinge_y*2+gap2, hinge_x*sqrt(2)] );
+    translate( [-hinge_x, hinge_y-gap1, -hinge_x] )
     rotate( [0, -45, 0] )
-    cube( [10*sqrt(2), front_y-hinge_y*2+gap2, 10*sqrt(2)] );
+    cube( [hinge_x*sqrt(2), front_y-hinge_y*2+gap2, hinge_x*sqrt(2)] );
     
     //stopper
-    translate( [front_x+10/2+0.25, 20, front_z+panel_thick] )
+    translate( [front_x+hinge_x/2+0.25, 20, front_z+panel_thick] )
     rotate( [90, 0, 0] )
     cylinder( 1+gap2, 1, 1, center=true, $fn=30 );
     
@@ -165,7 +168,7 @@ translate( [0, 100, 0] ){
                     wall_y( 0, 0, 0, rear_z );
                     wall_y( front_x-panel_thick, 0, 0, rear_z );
                     
-                    hook( -10, front_y/2-hook_y/2, 0, rear_z );
+                    hook( -hinge_x, front_y/2-hook_y/2, 0, rear_z );
                     hinge( front_x, front_y/2-hinge_y/2, 0, rear_z );
                 }
             }
