@@ -20,7 +20,7 @@ hinge_y = front_y/3-0.3;
 hinge_hole = 1.1+0.4;
 hook_x = 6.5;
 hook_y = front_y/3-0.3;
-hook_z = 2.5;
+hook_z = 5;
 
 board_thick = 1.5;
 board_hole_x = 89.5;
@@ -71,8 +71,8 @@ difference(){
             
             //LED
             translate( [63.5, 0, 0] ){
-                translate( [-7-1, front_y-15-37.5-1, panel_thick] )
-                cube( [6, 4, 12.5] );
+                translate( [-5.46+3, front_y-15-37.5-1+2, panel_thick] )
+                cylinder( 13, 3.5, 3.5, $fn=30 );
             }
         }
     }
@@ -99,7 +99,7 @@ difference(){
     
     translate( [63.5, 0, 0] ){
         //USB
-        translate( [1.25, front_y-panel_thick/2+gap1, 13.5] )
+        translate( [1.54, front_y-panel_thick/2+gap1, 13.5] )
         cube( [7.5, panel_thick+gap2*2, 5], center=true );
         
         //SW
@@ -114,8 +114,10 @@ difference(){
         }*/
         
         //LED
-        translate( [-7, front_y-15-37.5, 0.5] )
+        translate( [-4.46, front_y-15-37.5, 0.5] )
         cube( [4, 2, 15] );
+        translate( [-5.46+3, front_y-15-37.5-1+2, 0.5] )
+        cylinder( 15, 1, 2.8, $fn=30 );
     }
     
     //plug rl
@@ -127,14 +129,14 @@ difference(){
     cube( [8.5, 3, 7], center=true );
     
     //del
-    translate( [4, 12, -gap1] )
-    cube( [10, 59, 10] );
+    translate( [6, 12, -gap1] )
+    cube( [8, 59, 10] );
     translate( [55, 12, -gap1] )
-    cube( [45, 10, 10] );
+    cube( [40, 10, 10] );
     translate( [55, 29, -gap1] )
-    cube( [45, 42, 10] );
-    translate( [63, 19, -gap1] )
-    cube( [37, 13, 10] );
+    cube( [40, 42, 10] );
+    translate( [64.55, 19, -gap1] )
+    cube( [30.45, 13, 10] );
     translate( [15, front_y-5, 10] )
     cube( [40, 10, 40] );
     translate( [14, -5, -gap1] )
@@ -172,6 +174,13 @@ translate( [0, 100, 0] ){
                     hinge( front_x, front_y/2-hinge_y/2, 0, rear_z );
                 }
             }
+            //del
+            translate( [10, -5, 5] )
+            cube( [front_x-10-10, 10, rear_z] );
+            translate( [10, front_y-5, 5] )
+            cube( [front_x-10-10, 10, rear_z] );
+            translate( [5, 5, -5] )
+            cube( [front_x-5-5, front_y-5-5, 10] );
         }
     }
 }
