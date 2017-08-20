@@ -20,7 +20,7 @@ hinge_y = front_y/3-0.3;
 hinge_hole = 1.1+0.4;
 hook_x = 6.5;
 hook_y = front_y/3-0.3;
-hook_z = 5;
+hook_z = 3;
 
 board_thick = 1.5;
 board_hole_x = 89.5;
@@ -34,15 +34,14 @@ lcd_slope = 0.755;
 lcd_gap = 3.3;
 
 A = 1;
-B = 0;//1;
-C = 0;//1;
+B = 1;
 
 
 
 if( A ){
 difference(){
     union(){
-        //color( "Blue" )
+        color( "Blue" )
         {
             cube( [front_x, front_y, panel_thick] );
             wall_x( 0, 0, 0, front_z );
@@ -57,9 +56,9 @@ difference(){
             hook( -hinge_x, front_y-hook_y, 0, front_z );
             hinge( front_x, 0, 0, front_z );
             hinge( front_x, front_y-hinge_y, 0, front_z );
-            translate( [front_x, hinge_y, 0] )
             
             //hinge
+            translate( [front_x, hinge_y, 0] )
             cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
             translate( [-hinge_x, hinge_y, 0] )
             cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
@@ -102,17 +101,6 @@ difference(){
         translate( [1.54, front_y-panel_thick/2+gap1, 13.5] )
         cube( [7.5, panel_thick+gap2*2, 5], center=true );
         
-        //SW
-        /*translate( [20, front_y-10.5, panel_thick/2] ){
-            cube( [10+0.6, 6, panel_thick+gap2*2], center=true );
-            translate( [0, 6/2, 0] )
-            rotate( [-45, 0, 0] )
-            cube( [10+0.6, 6, panel_thick+gap2*2], center=true );
-            translate( [0, -6/2, 0] )
-            rotate( [45, 0, 0] )
-            cube( [10+0.6, 6, panel_thick+gap2*2], center=true );
-        }*/
-        
         //LED
         translate( [-4.46, front_y-15-37.5, 0.5] )
         cube( [4, 2, 15] );
@@ -138,31 +126,20 @@ difference(){
     translate( [64.55, 19, -gap1] )
     cube( [30.45, 13, 10] );
     translate( [15, front_y-5, 10] )
-    cube( [40, 10, 40] );
+    cube( [64, 10, 40] );
     translate( [14, -5, -gap1] )
     cube( [76, 10, 40] );
-    //translate( [-20, -10, -gap1] )
-    //cube( [20, 100, 40] );
-    //translate( [front_x, -10, -gap1] )
-    //cube( [20, 100, 40] );
 }
 }
 
 if( B ){
-//translate( [76.5, front_y-15+12.8, panel_thick+9.5] )
-//rotate( [180, 0, 0] )
-translate( [0, -20, 0] )
-sw( 0, 0, 0 );
-}
-
-if( C ){
-//translate( [0, front_y, front_z+rear_z+panel_thick*2] ){
-//    rotate( [180, 0, 0] ){
-translate( [0, 100, 0] ){
-    rotate( [0, 0, 0] ){
+translate( [0, front_y, front_z+rear_z+panel_thick*2] ){
+    rotate( [180, 0, 0] ){
+//translate( [0, 100, 0] ){
+//    rotate( [0, 0, 0] ){
         difference(){
             union(){
-                //color( "Black" )
+                color( "Black" )
                 {
                     cube( [front_x, front_y, panel_thick] );
                     wall_x( 0, 0, 0, rear_z );
@@ -179,8 +156,6 @@ translate( [0, 100, 0] ){
             cube( [front_x-10-10, 10, rear_z] );
             translate( [10, front_y-5, 5] )
             cube( [front_x-10-10, 10, rear_z] );
-            translate( [5, 5, -5] )
-            cube( [front_x-5-5, front_y-5-5, 10] );
         }
     }
 }
@@ -325,22 +300,5 @@ module lcd_hole( x, y, z ){
         cylinder( 2.4+0.15, 6.5/2+0.1, 6.5/2+0.1, $fn=6 );
         translate( [lcd_hole_x, lcd_hole_y, (6-1.5)-(2.4+0.15)] )
         cylinder( 2.4+0.15, 6.5/2+0.1, 6.5/2+0.1, $fn=6 );
-    }
-}
-
-
-
-module sw( x, y, z=0 ){
-    translate( [x, y, z] ){
-        difference(){
-            //color( "Black" )
-            union(){
-                cube( [14, 14, 9.5] );
-                translate( [14/2-10/2, 14/2-4/2, 9.5] )
-                cube( [10, 4, panel_thick+4] );
-            }
-            translate( [14/2-3.8/2, 14/2-2.5/2, 0-gap1] )
-            cube( [3.8, 2.5, 2.5] );
-        }
     }
 }
