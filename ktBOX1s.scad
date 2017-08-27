@@ -1,5 +1,5 @@
 //
-// ktBOX1
+// ktBOX1s
 //
 //
 
@@ -34,14 +34,14 @@ lcd_slope = 0.755;
 lcd_gap = 3.3;
 
 A = 1;
-B = 1;
+B = 0;
 
 
 
 if( A ){
 difference(){
     union(){
-        color( "Blue" )
+        //color( "Blue" )
         {
             cube( [front_x, front_y, panel_thick] );
             wall_x( 0, 0, 0, front_z );
@@ -56,12 +56,6 @@ difference(){
             hook( -hinge_x, front_y-hook_y, 0, front_z );
             hinge( front_x, 0, 0, front_z );
             hinge( front_x, front_y-hinge_y, 0, front_z );
-            
-            //hinge
-            translate( [front_x, hinge_y, 0] )
-            cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
-            translate( [-hinge_x, hinge_y, 0] )
-            cube( [hinge_x, front_y-hinge_y*2, hinge_x] );
             
             //stopper
             translate( [front_x+hinge_x/2+0.25, 20, front_z+panel_thick] )
@@ -82,14 +76,6 @@ difference(){
 
     lcd_window( 20.5, 30.6 );
     lcd_hole( 20.5, 30.6, panel_thick );
-
-    //hinge
-    translate( [front_x+hinge_x, hinge_y-gap1, -hinge_x] )
-    rotate( [0, -45, 0] )
-    cube( [hinge_x*sqrt(2), front_y-hinge_y*2+gap2, hinge_x*sqrt(2)] );
-    translate( [-hinge_x, hinge_y-gap1, -hinge_x] )
-    rotate( [0, -45, 0] )
-    cube( [hinge_x*sqrt(2), front_y-hinge_y*2+gap2, hinge_x*sqrt(2)] );
     
     //stopper
     translate( [front_x+hinge_x/2+0.25, 20, front_z+panel_thick] )
@@ -139,7 +125,7 @@ translate( [0, front_y, front_z+rear_z+panel_thick*2] ){
 //    rotate( [0, 0, 0] ){
         difference(){
             union(){
-                color( "Black" )
+                //color( "Black" )
                 {
                     cube( [front_x, front_y, panel_thick] );
                     wall_x( 0, 0, 0, rear_z );
@@ -239,9 +225,6 @@ module hinge( x, y, z, h ){
             translate( [hinge_x/2+0.25, hinge_y/2, h+panel_thick] )
             rotate( [90, 0, 0] )
             cylinder( hinge_y+gap2, hinge_hole, hinge_hole, center=true, $fn=30 );
-            translate( [0, -gap1, 0] )
-            rotate( [0, 45, 0] )
-            cube( [hinge_x*sqrt(2), hinge_y+gap2, hinge_x*sqrt(2)] );
         }
     }
 }
@@ -254,9 +237,6 @@ module hook( x, y, z, h ){
                 translate( [0, 0, h+panel_thick] )
                 cube( [hook_x, hook_y, hook_z] );
              }
-            translate( [0, -gap1, -hook_x] )
-            rotate( [0, -45, 0] )
-            cube( [hook_x*sqrt(2), hook_y+gap2, hook_x*sqrt(2)] );
         }
     }
 }
